@@ -1,57 +1,161 @@
-# Addictive-Congestion-Status(ACS)
+# Addictive-Congestion-Status (ACS)
 
-## Description
-The provided code is from the paper titled **"Path Congestion Status Identification for Network Performance Tomography Using Deep Spatial-Temporal Learning."**
+## Project Description
+This repository contains the implementation code for the paper titled **"Path Congestion Status Identification for Network Performance Tomography Using Deep Spatial-Temporal Learning."** The project introduces ACS, an innovative approach that enhances traditional network tomography by incorporating deep learning techniques to more accurately identify path congestion status in network environments.
 
-## Files Tree
-The structure of this repository is following:
+## Project Overview
+Network tomography is a methodology to infer internal network characteristics using end-to-end measurements. This project extends classical network tomography algorithms by incorporating a deep learning-based approach (ACS) to improve the accuracy of congestion detection and status identification.
+
+The work is divided into three main components:
+1. **Classical Network Tomography Algorithms** - Implementation of existing algorithms with ACS enhancements
+2. **Deep Learning Model (LSTM-AAE)** - The core of the ACS approach using LSTM Adversarial Autoencoders
+3. **Network Simulation** - NS-3 based simulation environment for testing and validation
+
+## Repository Structure
 ```
-├── improve_nt:
-│   ├── Topology_zoo.py       
-│   ├── Topology_zoo_Analog.py
-│   ├── alg_clink_2007.py     
-│   ├── alg_clink_2007_pcs.py 
-│   ├── alg_netscope.py       
-│   ├── alg_netscope_pcs.py   
-│   ├── alg_range_sum.py      
-│   ├── alg_range_sum_pcs.py  
-│   ├── evaluate.py
-│   └── multi_threads.py
-├── lstm-aae
-│   ├── model.py        
-│   ├── raw.py
-│   └── val.py
-└── ns-simulator   
-    ├── Chinanet.cc
-    ├── analyze.py 
-    └── script3.sh 
+├── improve_nt:               # Network Tomography Algorithm Implementations
+│   ├── Topology_zoo.py       # Base implementation for Boolean Network Tomography
+│   ├── Topology_zoo_Analog.py # Implementation for Analog Network Tomography
+│   ├── alg_clink_2007.py     # Implementation of the Clink algorithm (INFOCOM'07)
+│   ├── alg_clink_2007_pcs.py # Clink algorithm with ACS enhancement
+│   ├── alg_netscope.py       # NetScope algorithm implementation
+│   ├── alg_netscope_pcs.py   # NetScope algorithm with ACS enhancement
+│   ├── alg_range_sum.py      # Range Sum algorithm implementation
+│   ├── alg_range_sum_pcs.py  # Range Sum algorithm with ACS enhancement
+│   ├── evaluate.py           # Evaluation scripts for algorithm performance
+│   └── multi_threads.py      # Multi-threaded implementation for parallel testing
+├── lstm-aae                  # Deep Learning Model for ACS
+│   ├── model.py              # LSTM-AAE model architecture and training logic
+│   ├── raw.py                # Data processing utilities
+│   └── val.py                # Model validation scripts
+└── ns-simulator              # Network Simulation Environment
+    ├── Chinanet.cc           # NS-3 simulation for ChinaNet network topology
+    ├── analyze.py            # Analysis scripts for simulation results
+    └── script3.sh            # Shell script for batch simulation runs
 ```
-## Files Summary
 
-### Improve Network Tomography
-This folder contains the implementation of three different classical network tomography algorithms. Files ending with `pcs` utilize ACS for result correction.
+## Key Components
 
-- **Topology_zoo.py**: Implements Boolean Network Tomography algorithms.
-- **Topology_zoo_Analog.py**: Similar to BNT  but for Analog Network Tomography.
-- **alg_clink_2007.py**: Implements the Clink algorithm for network tomography.
-- **alg_clink_2007_pcs.py**: An adjusted version of `alg_clink_2007.py` using ACS for corrections.
-- **alg_netscope.py**: Implements the Netscope algorithm for network tomography.
-- **alg_netscope_pcs.py**: An adjusted version of `alg_netscope.py` using ACS for corrections.
-- **alg_range_sum.py**: Implements the Range Sum algorithm for network tomography.
-- **alg_range_sum_pcs.py**: An adjusted version of `alg_range_sum.py` using ACS for corrections.
-- **evaluate.py**: Contains evaluation functions for assessing the performance of the algorithms.
-- **multi_threads.py**: Implements multi-threading.
+### Network Tomography Algorithms (improve_nt)
+The `improve_nt` folder contains implementations of classical network tomography algorithms with their ACS-enhanced versions:
 
-### LSTM-AAE
-This folder contains the deep learning model for determining ACS.
+- **Base Classes**: `Topology_zoo.py` and `Topology_zoo_Analog.py` provide the foundation for Boolean and Analog Network Tomography.
+- **Network Tomography Algorithms**:
+  - **Clink Algorithm**: Based on the paper "The Boolean Solution to the Congested IP Link Location Problem" (INFOCOM'07)
+  - **NetScope Algorithm**: A method for network-wide inference of path metrics
+  - **Range Sum Algorithm**: A technique for analyzing path delay characteristics
 
-- **model.py**: Contains the architecture and implementation of the LSTM-AAE model.
-- **raw.py**: Handles raw data processing and preparation for the model.
-- **val.py**: Contains validation scripts for testing the performance of the model.
+The files ending with `_pcs.py` are the enhanced versions that utilize ACS for result correction, significantly improving accuracy.
 
-### NS3-simulator
-This folder contains actual network simulation data and related scripts.
+### Deep Learning Model (lstm-aae)
+The LSTM-based Adversarial Autoencoder (LSTM-AAE) implementation is the core of the ACS approach:
 
-- **Chinanet.cc**: Source file for simulating the ChinaNet network.
-- **analyze.py**: Script for analyzing the simulation data.
-- **script3.sh**: Shell script for running the simulation and analysis.
+- **Model Architecture**: Defined in `model.py`, the LSTM-AAE combines LSTM networks with adversarial training to better model temporal network characteristics.
+- **Data Processing**: The `raw.py` file handles data preparation and preprocessing.
+- **Validation**: Model performance evaluation through `val.py`.
+
+The model is designed to understand and predict temporal patterns in network congestion, enabling more accurate status identification.
+
+### Network Simulation (ns-simulator)
+To validate the approach, a realistic network simulation environment is created:
+
+- **ChinaNet Simulation**: `Chinanet.cc` contains a simulation of the ChinaNet network using NS-3.
+- **Data Analysis**: `analyze.py` processes simulation results and prepares them for the ACS model.
+- **Batch Testing**: `script3.sh` provides automation for running multiple simulations with varying parameters.
+
+## Installation and Requirements
+
+### Prerequisites
+- Python 3.6+
+- NS-3 (Network Simulator 3)
+- PyTorch 1.7+
+- NetworkX
+- NumPy, SciPy, Matplotlib
+- Gurobi Optimizer (for optimization components)
+
+### Setup Instructions
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/yourusername/Addictive-Congestion-Status.git
+   cd Addictive-Congestion-Status
+   ```
+
+2. Install Python dependencies:
+   ```bash
+   pip install -r requirements.txt
+   ```
+
+3. Set up NS-3 (if not already installed):
+   ```bash
+   # Follow NS-3 installation instructions from the official documentation
+   # Once installed, copy the ns-simulator files to your NS-3 workspace
+   ```
+
+## Usage Examples
+
+### Running Network Tomography Algorithms
+```python
+from improve_nt.Topology_zoo import 网络基类
+from improve_nt.alg_clink_2007 import alg_clink_2007
+from improve_nt.alg_clink_2007_pcs import alg_clink_2007_pcs
+
+# Create a network instance
+net = 网络基类()
+net.配置拓扑("topology_zoo/topology_zoo数据集/Chinanet.gml")
+net.部署测量路径(源节点列表=[2, 3])
+
+# Run both standard and ACS-enhanced versions
+results_standard = alg_clink_2007(Y, A_rm, x_pc)
+results_enhanced = alg_clink_2007_pcs(Y, A_rm, x_pc, PCS)
+```
+
+### Training the LSTM-AAE Model
+```python
+from lstm-aae.model import get_model_single
+
+# Train a model for single-path congestion detection
+get_model_single(
+    model_name="model_1", 
+    dataset_name="path/to/training_data.pkl",
+    seq_len=3,
+    ratio=0.8,
+    num_classes=3
+)
+```
+
+### Running Network Simulations
+```bash
+# Run a single simulation with specific parameters
+./waf --run "Chinanet --myParam=0.5 --probe_v=3.0 --anomoly_link=2"
+
+# Run a batch of simulations using the provided script
+./script3.sh 1.0 5.0 3 Chinanet
+```
+
+## Evaluation
+The performance of different algorithms can be evaluated using the `evaluate.py` script:
+
+```bash
+python improve_nt/evaluate.py Chinanet 0.5 1 0 True True
+```
+
+This will run a comprehensive evaluation comparing classical algorithms against their ACS-enhanced versions, reporting metrics such as detection rate, false positive rate, precision, and F1-score.
+
+## License
+This project is licensed under the Apache License 2.0 - see the LICENSE file for details.
+
+## Citation
+If you use this code in your research, please cite the original paper:
+```
+@misc{du2024identificationpathcongestionstatus,
+      title={Identification of Path Congestion Status for Network Performance Tomography using Deep Spatial-Temporal Learning}, 
+      author={Chengze Du and Zhiwei Yu and Xiangyu Wang},
+      year={2024},
+}
+```
+
+## Contributing
+Contributions to this project are welcome. Please feel free to submit a Pull Request.
+
+## Acknowledgements
+We acknowledge the use of the topology zoo dataset and the NS-3 simulation framework in this research.
