@@ -76,7 +76,7 @@ To validate the approach, a realistic network simulation environment is created:
 ### Setup Instructions
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/Addictive-Congestion-Status.git
+   git clone https://github.com/Monickar/ACS.git
    cd Addictive-Congestion-Status
    ```
 
