@@ -147,15 +147,19 @@ This project is licensed under the Apache License 2.0 - see the LICENSE file for
 ## Citation
 If you use this code in your research, please cite the original paper:
 ```
-@misc{du2024identificationpathcongestionstatus,
-      title={Identification of Path Congestion Status for Network Performance Tomography using Deep Spatial-Temporal Learning}, 
-      author={Chengze Du and Zhiwei Yu and Xiangyu Wang},
-      year={2024},
+@article{DU_NT_P_ACS,
+title = {Identification of path congestion status for network performance tomography using deep spatial-temporal learning},
+journal = {Computer Communications},
+pages = {108194},
+year = {2025},
+issn = {0140-3664},
+doi = {https://doi.org/10.1016/j.comcom.2025.108194},
+url = {https://www.sciencedirect.com/science/article/pii/S0140366425001513},
+author = {Chengze Du and Zhiwei Yu and Xiangyu Wang},
+keywords = {Network tomography, Path congestion status, End-to-end measurement, LSTM, Adversarial autoencoders}
 }
 ```
 
 ## Contributing
 Contributions to this project are welcome. Please feel free to submit a Pull Request.
 
-## Acknowledgements
-We acknowledge the use of the topology zoo dataset and the NS-3 simulation framework in this research.
